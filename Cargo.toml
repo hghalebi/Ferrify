@@ -1,0 +1,29 @@
+[workspace]
+members = [
+    "crates/agent-domain",
+    "crates/agent-policy",
+    "crates/agent-context",
+    "crates/agent-application",
+    "crates/agent-syntax",
+    "crates/agent-infra",
+    "crates/agent-evals",
+    "crates/agent-cli",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2024"
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+description = "Ferrify is a governed Rust software-change platform with typed policy, bounded planning, and evidence-backed reporting."
+repository = "https://github.com/hghalebi/Ferrify"
+rust-version = "1.85"
+
+[workspace.dependencies]
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+tempfile = "3"
+thiserror = "2"
+toml = "0.8"

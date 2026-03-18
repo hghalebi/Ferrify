@@ -1,0 +1,18 @@
+[package]
+name = "agent-policy"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Ferrify policy loading, precedence resolution, and approval enforcement."
+repository.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+agent-domain = { path = "../agent-domain" }
+serde.workspace = true
+serde_yaml.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

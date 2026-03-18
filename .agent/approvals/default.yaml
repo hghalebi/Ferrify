@@ -1,0 +1,15 @@
+slug: default
+approval_rules:
+  ReadWorkspace: Allow
+  RunChecks: Allow
+  EditWorkspace: Ask
+  RunArbitraryCommand: AskIfRisky
+  DeleteFiles: AskIfRisky
+  NetworkAccess: Deny
+  SwitchMode: Allow
+forbidden_paths:
+  - .git/
+  - target/
+dependency_policy: AllowApproved
+reporting:
+  may_claim_fix_without_tests: false

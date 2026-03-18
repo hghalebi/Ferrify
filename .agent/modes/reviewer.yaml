@@ -1,0 +1,15 @@
+slug: reviewer
+purpose: inspect scope, API impact, and convention drift without editing
+allowed_capabilities:
+  - ReadWorkspace
+  - SwitchMode
+approval_rules:
+  SwitchMode: Allow
+validation_minimums:
+  must_run: []
+patch_budget:
+  max_files: 0
+  max_changed_lines: 0
+  allow_manifest_changes: false
+reporting:
+  may_claim_fix_without_tests: false

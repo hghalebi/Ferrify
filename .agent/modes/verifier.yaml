@@ -1,0 +1,21 @@
+slug: verifier
+purpose: collect evidence without mutating source files
+allowed_capabilities:
+  - ReadWorkspace
+  - RunChecks
+approval_rules:
+  RunChecks: Allow
+  NetworkAccess: Deny
+  EditWorkspace: Deny
+validation_minimums:
+  must_run:
+    - CargoFmtCheck
+    - CargoCheck
+    - CargoClippy
+    - TargetedTests
+patch_budget:
+  max_files: 0
+  max_changed_lines: 0
+  allow_manifest_changes: false
+reporting:
+  may_claim_fix_without_tests: false

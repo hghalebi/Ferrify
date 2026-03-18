@@ -1,0 +1,16 @@
+[package]
+name = "agent-domain"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Ferrify domain types for policy, planning, provenance, and reporting."
+repository.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+serde.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+serde_json.workspace = true

@@ -1,0 +1,13 @@
+[package]
+name = "agent-infra"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Ferrify runtime infrastructure for verification, sandboxing, and tool brokering."
+repository.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+agent-domain = { path = "../agent-domain" }
+thiserror.workspace = true

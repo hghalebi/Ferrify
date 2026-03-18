@@ -1,0 +1,19 @@
+[package]
+name = "agent-application"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Ferrify orchestration for intake, planning, verification, and reporting."
+repository.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+agent-context = { path = "../agent-context" }
+agent-domain = { path = "../agent-domain" }
+agent-evals = { path = "../agent-evals" }
+agent-infra = { path = "../agent-infra" }
+agent-policy = { path = "../agent-policy" }
+agent-syntax = { path = "../agent-syntax" }
+serde.workspace = true
+thiserror.workspace = true

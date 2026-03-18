@@ -1,0 +1,22 @@
+slug: implementer
+purpose: prepare the smallest justified patch plan for the requested change
+allowed_capabilities:
+  - ReadWorkspace
+  - EditWorkspace
+  - RunChecks
+  - SwitchMode
+approval_rules:
+  EditWorkspace: Ask
+  RunChecks: Allow
+  SwitchMode: Allow
+  DeleteFiles: AskIfRisky
+  NetworkAccess: Deny
+validation_minimums:
+  must_run:
+    - CargoCheck
+patch_budget:
+  max_files: 3
+  max_changed_lines: 120
+  allow_manifest_changes: false
+reporting:
+  may_claim_fix_without_tests: false

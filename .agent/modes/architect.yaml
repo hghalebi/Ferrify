@@ -1,0 +1,15 @@
+slug: architect
+purpose: understand the repository and define a bounded change plan
+allowed_capabilities:
+  - ReadWorkspace
+  - SwitchMode
+approval_rules:
+  SwitchMode: Allow
+validation_minimums:
+  must_run: []
+reporting:
+  may_claim_fix_without_tests: false
+patch_budget:
+  max_files: 0
+  max_changed_lines: 0
+  allow_manifest_changes: false
