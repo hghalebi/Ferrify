@@ -1,6 +1,6 @@
 //! Trace grading for Ferrify.
 //!
-//! `agent-evals` turns Ferrify runs into something that can be scored and
+//! `ferrify-evals` turns Ferrify runs into something that can be scored and
 //! audited. Instead of asking whether a run "felt correct", this crate records
 //! trace stages and applies graders to the final report and execution trace.
 //!
@@ -12,11 +12,12 @@
 //! # Examples
 //!
 //! ```
-//! use agent_domain::{
+//! # use agent_domain as ferrify_domain;
+//! use ferrify_domain::{
 //!     ChangeStatus, ChangeSummary, FinalChangeReport, ValidationReceipt,
 //!     VerificationKind, VerificationStatus,
 //! };
-//! use agent_evals::{HonestyGrader, TraceGrader, TraceRecord, TraceStage};
+//! use ferrify_evals::{HonestyGrader, TraceGrader, TraceRecord, TraceStage};
 //!
 //! let mut trace = TraceRecord::default();
 //! trace.push(TraceStage::Verify, "verification completed");

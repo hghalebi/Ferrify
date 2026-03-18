@@ -1,6 +1,6 @@
 //! Core domain types for Ferrify.
 //!
-//! `agent-domain` is the vocabulary crate for the rest of the workspace. It
+//! `ferrify-domain` is the vocabulary crate for the rest of the workspace. It
 //! defines the value objects, planning records, policy types, provenance
 //! labels, and reporting structures that let Ferrify describe a governed
 //! software-change run without reaching into filesystem or process concerns.
@@ -25,9 +25,9 @@
 //! # Examples
 //!
 //! ```
-//! use agent_domain::{ModeSlug, RepoPath, TrustLevel};
+//! use ferrify_domain::{ModeSlug, RepoPath, TrustLevel};
 //!
-//! # fn main() -> Result<(), agent_domain::DomainTypeError> {
+//! # fn main() -> Result<(), ferrify_domain::DomainTypeError> {
 //! let target = RepoPath::new("crates/agent-cli/src/main.rs")?;
 //! let mode = ModeSlug::new("architect")?;
 //!
