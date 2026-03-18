@@ -1,19 +1,23 @@
 [package]
-name = "agent-application"
+name = "ferrify-application"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 description = "Ferrify orchestration for intake, planning, verification, and reporting."
 repository.workspace = true
+homepage.workspace = true
+documentation = "https://docs.rs/ferrify-application"
 rust-version.workspace = true
-publish = false
+readme = "README.md"
+keywords = ["rust", "agent", "orchestration", "verification", "governance"]
+categories = ["development-tools"]
 
 [dependencies]
-agent-context = { path = "../agent-context" }
-agent-domain = { path = "../agent-domain" }
-agent-evals = { path = "../agent-evals" }
-agent-infra = { path = "../agent-infra" }
-agent-policy = { path = "../agent-policy" }
-agent-syntax = { path = "../agent-syntax" }
+agent-context = { package = "ferrify-context", version = "0.1.1", path = "../agent-context" }
+agent-domain = { package = "ferrify-domain", version = "0.1.1", path = "../agent-domain" }
+agent-evals = { package = "ferrify-evals", version = "0.1.1", path = "../agent-evals" }
+agent-infra = { package = "ferrify-infra", version = "0.1.1", path = "../agent-infra" }
+agent-policy = { package = "ferrify-policy", version = "0.1.1", path = "../agent-policy" }
+agent-syntax = { package = "ferrify-syntax", version = "0.1.1", path = "../agent-syntax" }
 serde.workspace = true
 thiserror.workspace = true

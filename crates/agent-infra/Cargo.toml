@@ -1,13 +1,17 @@
 [package]
-name = "agent-infra"
+name = "ferrify-infra"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 description = "Ferrify runtime infrastructure for verification, sandboxing, and tool brokering."
 repository.workspace = true
+homepage.workspace = true
+documentation = "https://docs.rs/ferrify-infra"
 rust-version.workspace = true
-publish = false
+readme = "README.md"
+keywords = ["rust", "agent", "sandbox", "verification", "runtime"]
+categories = ["development-tools"]
 
 [dependencies]
-agent-domain = { path = "../agent-domain" }
+agent-domain = { package = "ferrify-domain", version = "0.1.1", path = "../agent-domain" }
 thiserror.workspace = true

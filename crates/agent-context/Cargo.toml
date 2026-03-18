@@ -1,15 +1,19 @@
 [package]
-name = "agent-context"
+name = "ferrify-context"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 description = "Ferrify repository modeling and working-context selection."
 repository.workspace = true
+homepage.workspace = true
+documentation = "https://docs.rs/ferrify-context"
 rust-version.workspace = true
-publish = false
+readme = "README.md"
+keywords = ["rust", "agent", "context", "repository", "governance"]
+categories = ["development-tools"]
 
 [dependencies]
-agent-domain = { path = "../agent-domain" }
+agent-domain = { package = "ferrify-domain", version = "0.1.1", path = "../agent-domain" }
 serde.workspace = true
 thiserror.workspace = true
 toml.workspace = true

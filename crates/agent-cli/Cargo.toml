@@ -5,16 +5,18 @@ edition.workspace = true
 license.workspace = true
 description.workspace = true
 repository.workspace = true
+homepage.workspace = true
+documentation = "https://docs.rs/ferrify"
 rust-version.workspace = true
-readme = "../../README.md"
+readme = "README.md"
 keywords = ["rust", "agent", "cli", "governance", "verification"]
 categories = ["command-line-utilities", "development-tools"]
 
 [dependencies]
-agent-application = { path = "../agent-application" }
-agent-domain = { path = "../agent-domain" }
-agent-infra = { path = "../agent-infra" }
-agent-policy = { path = "../agent-policy" }
+agent-application = { package = "ferrify-application", version = "0.1.1", path = "../agent-application" }
+agent-domain = { package = "ferrify-domain", version = "0.1.1", path = "../agent-domain" }
+agent-infra = { package = "ferrify-infra", version = "0.1.1", path = "../agent-infra" }
+agent-policy = { package = "ferrify-policy", version = "0.1.1", path = "../agent-policy" }
 clap.workspace = true
 serde_json.workspace = true
 thiserror.workspace = true

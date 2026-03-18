@@ -3,74 +3,6 @@
 version = 4
 
 [[package]]
-name = "agent-application"
-version = "0.1.0"
-dependencies = [
- "agent-context",
- "agent-domain",
- "agent-evals",
- "agent-infra",
- "agent-policy",
- "agent-syntax",
- "serde",
- "thiserror",
-]
-
-[[package]]
-name = "agent-context"
-version = "0.1.0"
-dependencies = [
- "agent-domain",
- "serde",
- "tempfile",
- "thiserror",
- "toml",
-]
-
-[[package]]
-name = "agent-domain"
-version = "0.1.0"
-dependencies = [
- "serde",
- "serde_json",
- "thiserror",
-]
-
-[[package]]
-name = "agent-evals"
-version = "0.1.0"
-dependencies = [
- "agent-domain",
- "serde",
-]
-
-[[package]]
-name = "agent-infra"
-version = "0.1.0"
-dependencies = [
- "agent-domain",
- "thiserror",
-]
-
-[[package]]
-name = "agent-policy"
-version = "0.1.0"
-dependencies = [
- "agent-domain",
- "serde",
- "serde_yaml",
- "tempfile",
- "thiserror",
-]
-
-[[package]]
-name = "agent-syntax"
-version = "0.1.0"
-dependencies = [
- "agent-domain",
-]
-
-[[package]]
 name = "anstream"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -208,16 +140,84 @@ checksum = "37909eebbb50d72f9059c3b6d82c0463f2ff062c9e95845c43a6c9c0355411be"
 
 [[package]]
 name = "ferrify"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
- "agent-application",
- "agent-domain",
- "agent-infra",
- "agent-policy",
  "clap",
+ "ferrify-application",
+ "ferrify-domain",
+ "ferrify-infra",
+ "ferrify-policy",
  "serde_json",
  "tempfile",
  "thiserror",
+]
+
+[[package]]
+name = "ferrify-application"
+version = "0.1.1"
+dependencies = [
+ "ferrify-context",
+ "ferrify-domain",
+ "ferrify-evals",
+ "ferrify-infra",
+ "ferrify-policy",
+ "ferrify-syntax",
+ "serde",
+ "thiserror",
+]
+
+[[package]]
+name = "ferrify-context"
+version = "0.1.1"
+dependencies = [
+ "ferrify-domain",
+ "serde",
+ "tempfile",
+ "thiserror",
+ "toml",
+]
+
+[[package]]
+name = "ferrify-domain"
+version = "0.1.1"
+dependencies = [
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
+name = "ferrify-evals"
+version = "0.1.1"
+dependencies = [
+ "ferrify-domain",
+ "serde",
+]
+
+[[package]]
+name = "ferrify-infra"
+version = "0.1.1"
+dependencies = [
+ "ferrify-domain",
+ "thiserror",
+]
+
+[[package]]
+name = "ferrify-policy"
+version = "0.1.1"
+dependencies = [
+ "ferrify-domain",
+ "serde",
+ "serde_yaml",
+ "tempfile",
+ "thiserror",
+]
+
+[[package]]
+name = "ferrify-syntax"
+version = "0.1.1"
+dependencies = [
+ "ferrify-domain",
 ]
 
 [[package]]

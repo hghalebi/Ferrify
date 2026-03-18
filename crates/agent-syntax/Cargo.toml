@@ -1,12 +1,16 @@
 [package]
-name = "agent-syntax"
+name = "ferrify-syntax"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 description = "Ferrify patch planning and edit-budget enforcement."
 repository.workspace = true
+homepage.workspace = true
+documentation = "https://docs.rs/ferrify-syntax"
 rust-version.workspace = true
-publish = false
+readme = "README.md"
+keywords = ["rust", "agent", "patch", "planning", "governance"]
+categories = ["development-tools"]
 
 [dependencies]
-agent-domain = { path = "../agent-domain" }
+agent-domain = { package = "ferrify-domain", version = "0.1.1", path = "../agent-domain" }
