@@ -1,6 +1,6 @@
 //! Policy loading, resolution, and authorization.
 //!
-//! `agent-policy` is the governance core for Ferrify. It loads declarative mode
+//! `ferrify-policy` is the governance core for Ferrify. It loads declarative mode
 //! and approval-profile files from `.agent/`, merges them into an
 //! [`EffectivePolicy`], and decides whether a capability or mode transition is
 //! allowed for the current run.
@@ -12,8 +12,9 @@
 //! # Examples
 //!
 //! ```no_run
-//! use agent_domain::ApprovalProfileSlug;
-//! use agent_policy::{PolicyEngine, PolicyRepository};
+//! # use agent_domain as ferrify_domain;
+//! use ferrify_domain::ApprovalProfileSlug;
+//! use ferrify_policy::{PolicyEngine, PolicyRepository};
 //!
 //! # fn main() -> Result<(), Box<dyn std::error::Error>> {
 //! let repository = PolicyRepository::load_from_root(std::path::Path::new("."))?;
@@ -23,7 +24,7 @@
 //! assert!(resolved
 //!     .effective_policy
 //!     .allowed_capabilities
-//!     .contains(&agent_domain::Capability::ReadWorkspace));
+//!     .contains(&ferrify_domain::Capability::ReadWorkspace));
 //! # Ok(())
 //! # }
 //! ```

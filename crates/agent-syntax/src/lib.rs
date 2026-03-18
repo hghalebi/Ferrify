@@ -1,6 +1,6 @@
 //! Patch planning and budget enforcement.
 //!
-//! `agent-syntax` is where Ferrify turns a broad change plan into a narrower
+//! `ferrify-syntax` is where Ferrify turns a broad change plan into a narrower
 //! patch plan. In the current starter implementation it does not rewrite source
 //! files. Instead, it enforces the patch budget and produces explicit anchors
 //! that explain why each file was selected.
@@ -14,13 +14,14 @@
 //! ```
 //! use std::collections::BTreeSet;
 //!
-//! use agent_domain::{
+//! # use agent_domain as ferrify_domain;
+//! use ferrify_domain::{
 //!     ApiImpact, BlastRadius, ChangeIntent, ChangePlan, OutcomeSpec, PatchBudget, RepoPath,
 //!     ScopeBoundary, SemanticConcern, TaskKind, VerificationKind, VerificationPlan,
 //! };
-//! use agent_syntax::PatchPlanner;
+//! use ferrify_syntax::PatchPlanner;
 //!
-//! # fn main() -> Result<(), agent_domain::DomainTypeError> {
+//! # fn main() -> Result<(), ferrify_domain::DomainTypeError> {
 //! let mut target_files = BTreeSet::new();
 //! target_files.insert(RepoPath::new("crates/agent-cli/src/main.rs")?);
 //!

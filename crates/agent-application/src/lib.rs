@@ -1,6 +1,6 @@
 //! Application orchestration for Ferrify.
 //!
-//! `agent-application` is the crate that wires the rest of the workspace into a
+//! `ferrify-application` is the crate that wires the rest of the workspace into a
 //! single governed run. It owns task intake, repository modeling, policy
 //! resolution, change planning, verification, review, trace generation, and the
 //! final report returned to the operator.
@@ -16,10 +16,13 @@
 //! use std::collections::BTreeSet;
 //! use std::path::PathBuf;
 //!
-//! use agent_application::{GovernedAgent, RunRequest};
-//! use agent_domain::{ApprovalProfileSlug, Capability, TaskKind};
-//! use agent_infra::ProcessVerificationBackend;
-//! use agent_policy::{PolicyEngine, PolicyRepository};
+//! # use agent_domain as ferrify_domain;
+//! # use agent_infra as ferrify_infra;
+//! # use agent_policy as ferrify_policy;
+//! use ferrify_application::{GovernedAgent, RunRequest};
+//! use ferrify_domain::{ApprovalProfileSlug, Capability, TaskKind};
+//! use ferrify_infra::ProcessVerificationBackend;
+//! use ferrify_policy::{PolicyEngine, PolicyRepository};
 //!
 //! # fn main() -> Result<(), Box<dyn std::error::Error>> {
 //! let repository = PolicyRepository::load_from_root(std::path::Path::new("."))?;
@@ -157,10 +160,13 @@ where
     /// use std::collections::BTreeSet;
     /// use std::path::PathBuf;
     ///
-    /// use agent_application::{GovernedAgent, RunRequest};
-    /// use agent_domain::{ApprovalProfileSlug, Capability, TaskKind};
-    /// use agent_infra::ProcessVerificationBackend;
-    /// use agent_policy::{PolicyEngine, PolicyRepository};
+    /// # use agent_domain as ferrify_domain;
+    /// # use agent_infra as ferrify_infra;
+    /// # use agent_policy as ferrify_policy;
+    /// use ferrify_application::{GovernedAgent, RunRequest};
+    /// use ferrify_domain::{ApprovalProfileSlug, Capability, TaskKind};
+    /// use ferrify_infra::ProcessVerificationBackend;
+    /// use ferrify_policy::{PolicyEngine, PolicyRepository};
     ///
     /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
     /// let repository = PolicyRepository::load_from_root(std::path::Path::new("."))?;

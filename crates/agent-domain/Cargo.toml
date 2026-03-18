@@ -1,12 +1,16 @@
 [package]
-name = "agent-domain"
+name = "ferrify-domain"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 description = "Ferrify domain types for policy, planning, provenance, and reporting."
 repository.workspace = true
+homepage.workspace = true
+documentation = "https://docs.rs/ferrify-domain"
 rust-version.workspace = true
-publish = false
+readme = "README.md"
+keywords = ["rust", "agent", "policy", "types", "governance"]
+categories = ["development-tools"]
 
 [dependencies]
 serde.workspace = true

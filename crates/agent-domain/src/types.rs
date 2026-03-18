@@ -68,9 +68,9 @@ impl RepoPath {
     /// # Examples
     ///
     /// ```
-    /// use agent_domain::RepoPath;
+    /// use ferrify_domain::RepoPath;
     ///
-    /// # fn main() -> Result<(), agent_domain::DomainTypeError> {
+    /// # fn main() -> Result<(), ferrify_domain::DomainTypeError> {
     /// let path = RepoPath::new("crates/agent-cli/src/main.rs")?;
     /// assert_eq!(path.as_str(), "crates/agent-cli/src/main.rs");
     /// # Ok(())
@@ -178,9 +178,9 @@ impl ModeSlug {
     /// # Examples
     ///
     /// ```
-    /// use agent_domain::ModeSlug;
+    /// use ferrify_domain::ModeSlug;
     ///
-    /// # fn main() -> Result<(), agent_domain::DomainTypeError> {
+    /// # fn main() -> Result<(), ferrify_domain::DomainTypeError> {
     /// let slug = ModeSlug::new("implementer")?;
     /// assert_eq!(slug.as_str(), "implementer");
     /// # Ok(())
@@ -272,9 +272,9 @@ impl ApprovalProfileSlug {
     /// # Examples
     ///
     /// ```
-    /// use agent_domain::ApprovalProfileSlug;
+    /// use ferrify_domain::ApprovalProfileSlug;
     ///
-    /// # fn main() -> Result<(), agent_domain::DomainTypeError> {
+    /// # fn main() -> Result<(), ferrify_domain::DomainTypeError> {
     /// let slug = ApprovalProfileSlug::new("default")?;
     /// assert_eq!(slug.as_str(), "default");
     /// # Ok(())

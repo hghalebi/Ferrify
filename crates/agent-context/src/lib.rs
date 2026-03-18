@@ -1,6 +1,6 @@
 //! Repository modeling and working-context selection.
 //!
-//! `agent-context` is the read-only exploration layer in Ferrify. It inspects a
+//! `ferrify-context` is the read-only exploration layer in Ferrify. It inspects a
 //! repository, records structural facts such as workspace members and toolchain
 //! files, and produces a bounded working set that later stages can use without
 //! carrying the entire repo into memory.
@@ -13,7 +13,7 @@
 //! # Examples
 //!
 //! ```no_run
-//! use agent_context::RepoModeler;
+//! use ferrify_context::RepoModeler;
 //! use std::path::Path;
 //!
 //! # fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -255,7 +255,7 @@ impl RepoModeler {
     /// # Examples
     ///
     /// ```no_run
-    /// use agent_context::RepoModeler;
+    /// use ferrify_context::RepoModeler;
     /// use std::path::Path;
     ///
     /// # fn main() -> Result<(), Box<dyn std::error::Error>> {

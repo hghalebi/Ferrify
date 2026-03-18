@@ -1,15 +1,19 @@
 [package]
-name = "agent-policy"
+name = "ferrify-policy"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 description = "Ferrify policy loading, precedence resolution, and approval enforcement."
 repository.workspace = true
+homepage.workspace = true
+documentation = "https://docs.rs/ferrify-policy"
 rust-version.workspace = true
-publish = false
+readme = "README.md"
+keywords = ["rust", "agent", "policy", "approval", "governance"]
+categories = ["development-tools"]
 
 [dependencies]
-agent-domain = { path = "../agent-domain" }
+agent-domain = { package = "ferrify-domain", version = "0.1.1", path = "../agent-domain" }
 serde.workspace = true
 serde_yaml.workspace = true
 thiserror.workspace = true

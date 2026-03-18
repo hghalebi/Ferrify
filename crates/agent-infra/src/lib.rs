@@ -1,6 +1,6 @@
 //! Runtime primitives for verification, sandbox selection, and tool brokering.
 //!
-//! `agent-infra` defines the boundary between Ferrify's control-plane types and
+//! `ferrify-infra` defines the boundary between Ferrify's control-plane types and
 //! the outside world. This includes sandbox selection, tool-broker contracts,
 //! and the verification backend that shells out to Cargo.
 //!
@@ -11,8 +11,9 @@
 //! # Examples
 //!
 //! ```
-//! use agent_domain::ModeSlug;
-//! use agent_infra::{SandboxManager, SandboxProfile};
+//! # use agent_domain as ferrify_domain;
+//! use ferrify_domain::ModeSlug;
+//! use ferrify_infra::{SandboxManager, SandboxProfile};
 //!
 //! let mode = ModeSlug::new("verifier").expect("verifier is a valid mode slug");
 //! assert_eq!(

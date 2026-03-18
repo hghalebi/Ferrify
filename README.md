@@ -76,16 +76,16 @@ The important design constraint is that later stages cannot silently widen autho
 
 Ferrify is organized as a Cargo workspace with one crate per major control-plane concern.
 
-| Crate | Responsibility |
+| Package | Responsibility |
 | --- | --- |
-| `agent-domain` | Core types for policy, planning, provenance, scope, receipts, and reports |
-| `agent-policy` | Loads `.agent/modes` and `.agent/approvals`, then resolves effective policy |
-| `agent-context` | Models the repository and produces a bounded working set |
-| `agent-application` | Orchestrates intake, planning, verification, review, and final reporting |
-| `agent-syntax` | Turns a change plan into a bounded patch plan under a patch budget |
-| `agent-infra` | Verification backend, sandbox profile selection, and tool-broker contracts |
-| `agent-evals` | Trace graders and adversarial or golden evaluation helpers |
-| `agent-cli` | The `ferrify` binary and CLI regression tests |
+| `ferrify-domain` (`crates/agent-domain`) | Core types for policy, planning, provenance, scope, receipts, and reports |
+| `ferrify-policy` (`crates/agent-policy`) | Loads `.agent/modes` and `.agent/approvals`, then resolves effective policy |
+| `ferrify-context` (`crates/agent-context`) | Models the repository and produces a bounded working set |
+| `ferrify-application` (`crates/agent-application`) | Orchestrates intake, planning, verification, review, and final reporting |
+| `ferrify-syntax` (`crates/agent-syntax`) | Turns a change plan into a bounded patch plan under a patch budget |
+| `ferrify-infra` (`crates/agent-infra`) | Verification backend, sandbox profile selection, and tool-broker contracts |
+| `ferrify-evals` (`crates/agent-evals`) | Trace graders and adversarial or golden evaluation helpers |
+| `ferrify` (`crates/agent-cli`) | The CLI binary and regression-test package |
 
 This split is intentional. Ferrify is easier to reason about when the types that define authority are separate from the code that shells out to Cargo or parses repository files.
 
