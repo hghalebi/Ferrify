@@ -1,3 +1,12 @@
+//! Change-intent, planning, and verification types.
+//!
+//! This module describes the lifecycle of a governed change as data. It starts
+//! with operator-facing intent such as [`TaskKind`] and [`ScopeBoundary`], then
+//! refines that intent into planning artifacts like [`ChangePlan`] and
+//! [`PatchPlan`]. By keeping these records serializable and explicit, Ferrify
+//! can explain its scope and verification decisions without relying on hidden
+//! prompt state.
+
 use std::collections::BTreeSet;
 
 use serde::{Deserialize, Serialize};

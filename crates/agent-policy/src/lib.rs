@@ -1,4 +1,32 @@
 //! Policy loading, resolution, and authorization.
+//!
+//! `agent-policy` is the governance core for Ferrify. It loads declarative mode
+//! and approval-profile files from `.agent/`, merges them into an
+//! [`EffectivePolicy`], and decides whether a capability or mode transition is
+//! allowed for the current run.
+//!
+//! The crate deliberately separates repository configuration from application
+//! orchestration. That keeps policy versionable, reviewable, and testable
+//! without hardwiring repository-specific rules into the runtime itself.
+//!
+//! # Examples
+//!
+//! ```no_run
+//! use agent_domain::ApprovalProfileSlug;
+//! use agent_policy::{PolicyEngine, PolicyRepository};
+//!
+//! # fn main() -> Result<(), Box<dyn std::error::Error>> {
+//! let repository = PolicyRepository::load_from_root(std::path::Path::new("."))?;
+//! let engine = PolicyEngine::new(repository);
+//! let resolved = engine.resolve("architect", &ApprovalProfileSlug::new("default")?)?;
+//!
+//! assert!(resolved
+//!     .effective_policy
+//!     .allowed_capabilities
+//!     .contains(&agent_domain::Capability::ReadWorkspace));
+//! # Ok(())
+//! # }
+//! ```
 
 use std::{
     collections::{BTreeMap, BTreeSet},
@@ -65,6 +93,11 @@ pub struct PolicyRepository {
 
 impl PolicyRepository {
     /// Loads `.agent/modes` and `.agent/approvals` from the repository root.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`PolicyError`] when the directories cannot be read or when a
+    /// YAML file fails to deserialize into the expected policy type.
     pub fn load_from_root(root: &Path) -> Result<Self, PolicyError> {
         let modes_dir = root.join(".agent").join("modes");
         let approvals_dir = root.join(".agent").join("approvals");
@@ -85,6 +118,11 @@ impl PolicyRepository {
     }
 
     /// Returns a mode by slug.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`PolicyError::MissingMode`] when the requested mode is not
+    /// present in the loaded repository policy.
     pub fn mode(&self, slug: &str) -> Result<&ModeSpec, PolicyError> {
         self.modes
             .get(slug)
@@ -92,6 +130,11 @@ impl PolicyRepository {
     }
 
     /// Returns an approval profile by slug.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`PolicyError::MissingApprovalProfile`] when the requested
+    /// profile was not loaded from `.agent/approvals`.
     pub fn approval_profile(
         &self,
         slug: &ApprovalProfileSlug,
@@ -122,6 +165,14 @@ impl PolicyEngine {
     }
 
     /// Resolves the effective policy for a mode and approval profile.
+    ///
+    /// The result is the policy Ferrify actually executes with after mode
+    /// defaults and approval-profile overrides have been merged.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`PolicyError`] when either the mode or approval profile is
+    /// missing from the loaded repository data.
     pub fn resolve(
         &self,
         mode_slug: &str,
@@ -153,6 +204,12 @@ impl PolicyEngine {
     }
 
     /// Checks whether a capability can be used with the provided approvals.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`PolicyError`] when the capability is not allowed by the active
+    /// mode, when the capability is denied outright, or when the capability
+    /// requires approval and the caller did not supply it.
     pub fn authorize(
         &self,
         policy: &EffectivePolicy,
@@ -182,6 +239,11 @@ impl PolicyEngine {
     }
 
     /// Enforces the rule that widening a mode's authority requires approval.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`PolicyError`] when the target mode introduces a capability
+    /// that is either disallowed or not explicitly approved for the transition.
     pub fn authorize_transition(
         &self,
         from: &EffectivePolicy,

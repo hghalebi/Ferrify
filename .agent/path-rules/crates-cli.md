@@ -2,3 +2,4 @@
 
 - `crates/agent-cli/**` translates operator input into typed requests.
 - Error output goes to stderr; success output goes to stdout.
+- User-facing wording in this path should stay concise and plain.

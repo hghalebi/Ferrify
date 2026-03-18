@@ -1,4 +1,25 @@
 //! Runtime primitives for verification, sandbox selection, and tool brokering.
+//!
+//! `agent-infra` defines the boundary between Ferrify's control-plane types and
+//! the outside world. This includes sandbox selection, tool-broker contracts,
+//! and the verification backend that shells out to Cargo.
+//!
+//! The crate stays intentionally small in the starter implementation. The goal
+//! is to make operational boundaries explicit before adding richer runtimes or
+//! external integrations.
+//!
+//! # Examples
+//!
+//! ```
+//! use agent_domain::ModeSlug;
+//! use agent_infra::{SandboxManager, SandboxProfile};
+//!
+//! let mode = ModeSlug::new("verifier").expect("verifier is a valid mode slug");
+//! assert_eq!(
+//!     SandboxManager::profile_for_mode(&mode),
+//!     SandboxProfile::ReadOnlyWorkspace
+//! );
+//! ```
 
 use std::{
     path::Path,
@@ -30,6 +51,10 @@ pub struct SandboxManager;
 
 impl SandboxManager {
     /// Returns the recommended sandbox profile for a mode.
+    ///
+    /// Ferrify keeps verifier stages read-only and uses a write-without-network
+    /// profile for implementer stages. Unknown modes currently default to the
+    /// conservative read-only profile.
     #[must_use]
     pub fn profile_for_mode(mode_slug: &ModeSlug) -> SandboxProfile {
         match mode_slug.as_str() {
@@ -104,6 +129,12 @@ pub struct ToolReceipt {
 /// A broker that mediates tool execution under policy.
 pub trait ToolBroker {
     /// Executes a tool request under the current effective policy.
+    ///
+    /// # Errors
+    ///
+    /// Implementations should return [`ToolError`] when the policy forbids the
+    /// capability, when the request cannot be normalized, or when the tool
+    /// backend itself is unavailable.
     fn call(
         &self,
         request: ToolRequest,
@@ -132,6 +163,11 @@ impl ToolBroker for DenyByDefaultToolBroker {
 /// Runs verification commands and returns receipts.
 pub trait VerificationBackend {
     /// Executes the verification plan at the repository root.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`InfraError`] when the backend cannot launch the required
+    /// command or cannot collect its result.
     fn run(
         &self,
         root: &Path,

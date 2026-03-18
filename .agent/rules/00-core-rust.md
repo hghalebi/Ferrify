@@ -5,3 +5,4 @@
 - Prefer repository evidence over remembered conventions.
 - Tag inputs by role so policy-bearing content stays separate from untrusted evidence.
 - Comments should explain non-obvious rationale, not narrate the code.
+- Keep Ferrify's public claims aligned with the current runtime, not planned future behavior.

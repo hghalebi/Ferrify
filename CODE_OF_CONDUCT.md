@@ -17,6 +17,7 @@ Examples of unacceptable behavior:
 - bad-faith review behavior
 - deliberate misrepresentation of test results or code behavior
 - publishing private information without permission
+- using AI-generated output as an excuse for poor quality or unclear ownership
 
 ## Enforcement
 
@@ -25,4 +26,3 @@ Project maintainers may remove, edit, or reject contributions and participation 
 ## Reporting
 
 Report conduct issues through the project security or maintainer contact path described in [SECURITY.md](SECURITY.md).
-

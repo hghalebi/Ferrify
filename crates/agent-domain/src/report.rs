@@ -1,3 +1,10 @@
+//! Final-report and verification-receipt types.
+//!
+//! These types are what make Ferrify's reporting contract concrete. A final
+//! status is paired with individual [`ValidationReceipt`] values and preserved
+//! risks so the runtime can say exactly what it observed instead of implying
+//! more certainty than the evidence supports.
+
 use serde::{Deserialize, Serialize};
 
 use crate::{RepoPath, RiskItem, VerificationKind};

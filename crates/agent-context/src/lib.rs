@@ -1,4 +1,27 @@
 //! Repository modeling and working-context selection.
+//!
+//! `agent-context` is the read-only exploration layer in Ferrify. It inspects a
+//! repository, records structural facts such as workspace members and toolchain
+//! files, and produces a bounded working set that later stages can use without
+//! carrying the entire repo into memory.
+//!
+//! The crate follows a structural-first read order. It looks at root manifests,
+//! toolchain configuration, CI files, repository policy, and only then expands
+//! into nearby code. That order matters because Ferrify treats current
+//! repository evidence as stronger than remembered conventions.
+//!
+//! # Examples
+//!
+//! ```no_run
+//! use agent_context::RepoModeler;
+//! use std::path::Path;
+//!
+//! # fn main() -> Result<(), Box<dyn std::error::Error>> {
+//! let model = RepoModeler::scan(Path::new("."))?;
+//! assert!(!model.crates.is_empty());
+//! # Ok(())
+//! # }
+//! ```
 
 use std::{
     collections::BTreeSet,
@@ -217,7 +240,30 @@ pub struct RepoModel {
 pub struct RepoModeler;
 
 impl RepoModeler {
-    /// Scans the repository root using the structural-first read order.
+    /// Scans the repository root using Ferrify's structural-first read order.
+    ///
+    /// The scan prefers root manifests, toolchain files, CI entry points, and
+    /// repository policy before it expands into crate-specific source files.
+    /// That ordering keeps planning grounded in the repo's declared structure.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`ContextError`] when a required manifest cannot be read or
+    /// parsed, when repository-relative paths cannot be normalized into
+    /// [`RepoPath`], or when the filesystem cannot be traversed.
+    ///
+    /// # Examples
+    ///
+    /// ```no_run
+    /// use agent_context::RepoModeler;
+    /// use std::path::Path;
+    ///
+    /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
+    /// let repo_model = RepoModeler::scan(Path::new("."))?;
+    /// println!("discovered {} crate(s)", repo_model.crates.len());
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn scan(root: &Path) -> Result<RepoModel, ContextError> {
         let root_manifest = root.join("Cargo.toml");
         let mut read_order = Vec::new();

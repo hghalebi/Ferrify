@@ -28,3 +28,6 @@ Describe what Ferrify should have done instead.
 
 Paste relevant command output, receipts, or logs.
 
+## Scope notes
+
+List any `--in-scope`, `--out-of-scope`, or approval flags that mattered.

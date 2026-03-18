@@ -1,3 +1,10 @@
+//! Policy, trust, and capability types.
+//!
+//! Ferrify treats policy as first-class data. The types in this module describe
+//! where a rule came from, what level of trust an input carries, which
+//! capabilities a stage may request, and which verification/reporting
+//! constraints survive into the final run.
+
 use std::collections::{BTreeMap, BTreeSet};
 
 use serde::{Deserialize, Serialize};

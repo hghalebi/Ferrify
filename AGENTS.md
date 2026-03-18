@@ -2,6 +2,12 @@
 
 Ferrify is a governed Rust software-change platform. The codebase prefers typed policy, explicit trust boundaries, deterministic planning, and evidence-backed reporting over prompt-only behavior.
 
+## Product status
+
+- Ferrify currently plans, verifies, and reports.
+- Ferrify does not yet apply source edits automatically.
+- User-facing claims must match what the runtime can actually prove today.
+
 ## Mission
 
 - Keep policy, mode, and evidence concerns explicit in Rust types.
@@ -27,3 +33,4 @@ Ferrify is a governed Rust software-change platform. The codebase prefers typed 
 - Do not claim a fix unless a verification receipt exists or the claim is labeled as inference.
 - Preserve residual risks when checks fail or when the plan had to infer target files.
 - Keep scope and patch-budget decisions visible in the final report.
+- Keep product documentation aligned with the runtime's real capabilities.

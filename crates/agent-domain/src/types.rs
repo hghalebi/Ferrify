@@ -1,4 +1,9 @@
 //! Strong domain types that replace meaning-bearing raw primitives.
+//!
+//! These value objects move critical invariants to construction time. Instead
+//! of asking every caller to remember that repository paths must stay relative
+//! or that mode names must be lowercase slugs, Ferrify encodes those rules in
+//! dedicated types and rejects invalid values at the boundary.
 
 use std::{
     borrow::Borrow,
@@ -51,6 +56,26 @@ pub struct RepoPath(String);
 
 impl RepoPath {
     /// Creates a validated repository-relative path.
+    ///
+    /// `RepoPath` rejects empty values, absolute paths, and any path that tries
+    /// to escape the workspace with `..`.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`DomainTypeError`] when the value is empty, absolute, or
+    /// contains parent-directory traversal.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use agent_domain::RepoPath;
+    ///
+    /// # fn main() -> Result<(), agent_domain::DomainTypeError> {
+    /// let path = RepoPath::new("crates/agent-cli/src/main.rs")?;
+    /// assert_eq!(path.as_str(), "crates/agent-cli/src/main.rs");
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn new(value: impl Into<String>) -> Result<Self, DomainTypeError> {
         let value = value.into();
         if value.is_empty() {
@@ -140,6 +165,27 @@ pub struct ModeSlug(String);
 
 impl ModeSlug {
     /// Creates a validated mode slug.
+    ///
+    /// Mode slugs are stable identifiers used in policy files and orchestration
+    /// logic. They are intentionally restricted to lowercase ASCII letters,
+    /// digits, `-`, and `_`.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`DomainTypeError`] when the value is empty or contains
+    /// unsupported characters.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use agent_domain::ModeSlug;
+    ///
+    /// # fn main() -> Result<(), agent_domain::DomainTypeError> {
+    /// let slug = ModeSlug::new("implementer")?;
+    /// assert_eq!(slug.as_str(), "implementer");
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn new(value: impl Into<String>) -> Result<Self, DomainTypeError> {
         let value = value.into();
         validate_slug("mode slug", &value)?;
@@ -214,6 +260,26 @@ pub struct ApprovalProfileSlug(String);
 
 impl ApprovalProfileSlug {
     /// Creates a validated approval-profile slug.
+    ///
+    /// Approval-profile slugs identify policy bundles under
+    /// `.agent/approvals/*.yaml`.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`DomainTypeError`] when the value is empty or contains
+    /// unsupported characters.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use agent_domain::ApprovalProfileSlug;
+    ///
+    /// # fn main() -> Result<(), agent_domain::DomainTypeError> {
+    /// let slug = ApprovalProfileSlug::new("default")?;
+    /// assert_eq!(slug.as_str(), "default");
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn new(value: impl Into<String>) -> Result<Self, DomainTypeError> {
         let value = value.into();
         validate_slug("approval profile slug", &value)?;

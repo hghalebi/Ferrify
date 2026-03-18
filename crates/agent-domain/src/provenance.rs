@@ -1,3 +1,10 @@
+//! Provenance labels for inputs observed during a Ferrify run.
+//!
+//! The central question here is not only "what did Ferrify read?" but also
+//! "what role is that input allowed to play?" [`InputRole`] captures that
+//! distinction so repository policy, operator goals, source code, evidence, and
+//! untrusted text do not collapse into a single undifferentiated blob.
+
 use serde::{Deserialize, Serialize};
 
 use crate::TrustLevel;

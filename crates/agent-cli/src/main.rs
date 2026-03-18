@@ -1,3 +1,14 @@
+//! Developer-facing CLI entry point for Ferrify.
+//!
+//! The `ferrify` binary is the operator shell for the governed runtime. It
+//! parses CLI input, loads repository policy, constructs a [`RunRequest`], and
+//! then prints either a structured JSON report or a concise human-readable
+//! summary.
+//!
+//! At the moment the CLI drives planning and verification, not automatic source
+//! editing. A successful run means Ferrify produced a bounded plan and matched
+//! its claims to verification receipts.
+
 use std::{collections::BTreeSet, path::PathBuf, process::ExitCode};
 
 use agent_application::{GovernedAgent, RunRequest};

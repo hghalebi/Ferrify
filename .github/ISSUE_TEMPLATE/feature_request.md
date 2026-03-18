@@ -22,3 +22,6 @@ State what should be in scope and out of scope.
 
 Explain how we should verify the feature once implemented.
 
+## User impact
+
+Who benefits from this and what becomes easier or safer for them?
